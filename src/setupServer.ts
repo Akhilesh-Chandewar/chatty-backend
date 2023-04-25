@@ -10,10 +10,17 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
+// import apiStats from 'swagger-stats';
 import 'express-async-errors';
 import { config } from '@root/config';
 import applicationRoutes from '@root/routes';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
+// import { SocketIOPostHandler } from '@socket/post';
+// import { SocketIOFollowerHandler } from '@socket/follower';
+// import { SocketIOUserHandler } from '@socket/user';
+// import { SocketIONotificationHandler } from '@socket/notification';
+// import { SocketIOImageHandler } from '@socket/image';
+// import { SocketIOChatHandler } from '@socket/chat';
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -41,8 +48,7 @@ export class ChattyServer {
         name: 'session',
         keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
         maxAge: 24 * 7 * 3600000,
-        secure: config.NODE_ENV !== 'development',
-        sameSite: 'none' // comment this line when running the server locally
+        // secure: config.NODE_ENV !== 'development',
       })
     );
     app.use(hpp());
